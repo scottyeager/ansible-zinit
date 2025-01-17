@@ -55,8 +55,14 @@ def main():
                 run_zinit_command('stop', service)
             changed = True
     elif state == 'restarted':
+        if not is_monitored(service):
+            if not module.check_mode:
+                run_zinit_command('monitor', service)
+            changed = True
         if not module.check_mode:
-            run_zinit_command('restart', service)
+            # Use stop/start instead of restart for compatibility with older zinit versions
+            run_zinit_command('stop', service)
+            run_zinit_command('start', service)
         changed = True
     elif state == 'reloaded':
         if not module.check_mode:
