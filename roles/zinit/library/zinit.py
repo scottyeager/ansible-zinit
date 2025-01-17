@@ -9,8 +9,8 @@ def run_zinit_command(command, service):
     return subprocess.run(cmd, capture_output=True, text=True)
 
 def service_exists(service):
-    result = run_zinit_command('list', '')
-    return service in result.stdout
+    import os.path
+    return os.path.exists(f"/etc/zinit/{service}.yaml")
 
 def service_status(service):
     result = run_zinit_command('status', service)
