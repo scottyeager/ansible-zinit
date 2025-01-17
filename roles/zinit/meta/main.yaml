@@ -8,3 +8,6 @@ galaxy_info:
         - all
 
 dependencies: []
+
+library:
+  - zinit
