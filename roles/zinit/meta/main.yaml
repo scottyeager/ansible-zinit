@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: zinit
   author: Scott Yeager
   description: Zinit service management role
   license: MIT
