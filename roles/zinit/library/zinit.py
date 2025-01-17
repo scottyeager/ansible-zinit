@@ -60,7 +60,9 @@ def main():
         changed = True
     elif state == 'reloaded':
         if not module.check_mode:
-            run_zinit_command('reload', service)
+            run_zinit_command('stop', service)
+            run_zinit_command('forget', service)
+            run_zinit_command('monitor', service)
         changed = True
 
     module.exit_json(changed=changed, state=state)
