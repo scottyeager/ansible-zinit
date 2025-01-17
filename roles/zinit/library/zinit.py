@@ -12,6 +12,10 @@ def service_exists(service):
     import os.path
     return os.path.exists(f"/etc/zinit/{service}.yaml")
 
+def is_monitored(service):
+    result = run_zinit_command('list', '')
+    return service in result.stdout
+
 def service_status(service):
     result = run_zinit_command('status', service)
     return 'running' if 'running' in result.stdout.lower() else 'stopped'
@@ -37,7 +41,11 @@ def main():
     current_state = service_status(service)
 
     if state == 'started':
-        if current_state == 'stopped':
+        if not is_monitored(service):
+            if not module.check_mode:
+                run_zinit_command('monitor', service)
+            changed = True
+        elif current_state == 'stopped':
             if not module.check_mode:
                 run_zinit_command('start', service)
             changed = True
