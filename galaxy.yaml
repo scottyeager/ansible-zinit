@@ -1,0 +1,14 @@
+namespace: your_namespace
+name: zinit
+version: 1.0.0
+readme: README.md
+authors:
+  - Scott Yeager
+license: MIT
+repository: https://github.com/your_org/your-repo
+description: Zinit service management collection
+tags:
+  - zinit
+  - service
+  - init
+dependencies: {}
