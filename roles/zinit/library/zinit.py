@@ -23,7 +23,7 @@ def service_status(service):
 def main():
     module_args = dict(
         name=dict(type='str', required=True),
-        state=dict(type='str', choices=['started', 'stopped', 'restarted', 'reloaded'])
+        state=dict(type='str', choices=['started', 'stopped', 'restarted', 'reloaded', 'unmonitored'])
     )
 
     module = AnsibleModule(
@@ -70,6 +70,11 @@ def main():
             run_zinit_command('forget', service)
             run_zinit_command('monitor', service)
         changed = True
+    elif state == 'unmonitored':
+        if is_monitored(service):
+            if not module.check_mode:
+                run_zinit_command('forget', service)
+            changed = True
 
     module.exit_json(changed=changed, state=state)
 

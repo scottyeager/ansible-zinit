@@ -1,3 +1,1 @@
 # Default variables for zinit role
-service_name: ""
-service_state: ""
