@@ -6,7 +6,7 @@ import subprocess
 
 DOCUMENTATION = r'''
 ---
-module: scottyeager.zinit.zinit
+module: scottyeager.zinit.service
 short_description: Manage zinit services
 description:
   - This module allows you to manage zinit services
@@ -29,12 +29,12 @@ author:
 
 EXAMPLES = r'''
 - name: Start a service
-  your_namespace.zinit.zinit:
+  scottyeager.zinit.service:
     name: myservice
     state: started
 
 - name: Stop a service
-  your_namespace.zinit.zinit:
+  scottyeager.zinit.service:
     name: myservice
     state: stopped
 '''
