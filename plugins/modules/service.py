@@ -6,7 +6,7 @@ import subprocess
 
 DOCUMENTATION = r'''
 ---
-module: zinit
+module: service
 short_description: Manage zinit services
 description:
   - This module allows you to manage zinit services
